@@ -14,8 +14,9 @@ ADD windows/* /bin/
 USER ContainerAdministrator
 RUN setx /M PATH "%PATH%;C:\Program Files\PowerShell"
 
+SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
 RUN Set-Alias -Name powershell -Value pwsh.exe; \
     Set-Alias -Name powershell.exe -Value pwsh.exe
 
-SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 CMD [ "pwsh", "C:\\bin\\clone.ps1" ]
